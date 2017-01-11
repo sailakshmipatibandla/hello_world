@@ -1,0 +1,101 @@
+LIST
+
+
+A list is a generic vector containing other objects.
+List is a data structure having components of mixed data types.
+
+We can check if it's a list with typeof() function and find its length using length().
+list can be created using the list function..
+
+ex:-
+> x <- list("a" = 2.5, "b" = TRUE, "c" = 1:3)
+> x
+$a
+[1] 2.5
+
+$b
+[1] TRUE
+
+$c
+[1] 1 2 3
+
+> str(x) // structure of the list
+List of 3
+ $ a: num 2.5
+ $ b: logi TRUE
+ $ c: int [1:3] 1 2 3
+
+a,b,c are called tags,tags are optional, inspite of tags also we can develop a list.
+
+ex2:- 
+> n = c(2, 3, 5) 
+> s = c("aa", "bb", "cc", "dd", "ee") 
+> b = c(TRUE, FALSE, TRUE, FALSE, FALSE) 
+> x = list(n, s, b, 3)   # x contains copies of n, s, b
+> x
+[[1]]
+[1] 2 3 5
+
+[[2]]
+[1] "aa" "bb" "cc" "dd" "ee"
+
+[[3]]
+[1]  TRUE FALSE  TRUE FALSE FALSE
+
+[[4]]
+[1] 3
+
+
+-->list slicing
+ >x[2] // contains the second vector of a list
+[[1]]
+[1] "aa" "bb" "cc" "dd" "ee"
+
+> x[c(2,4)]
+[[1]]
+[1] "aa" "bb" "cc" "dd" "ee"
+
+[[2]]
+[1] 3
+
+--->Member Reference
+In order to reference a list member directly, we have to use the double square bracket "[[]]" operator.
+
+> x[[2]]
+[1] "aa" "bb" "cc" "dd" "ee"
+
+> x[[2]][3]<-"sai" // content modification
+> x
+[[1]]
+[1] 2 3 5
+
+[[2]]
+[1] "aa"  "bb"  "sai" "dd"  "ee" 
+
+[[3]]
+[1]  TRUE FALSE  TRUE FALSE FALSE
+
+[[4]]
+[1] 3
+
+---> named list members
+
+> f=list(dad=c(1,2,3,4),cat=c(5,6,7,8,9)) // naming the vectors in the list
+> f
+$dad
+[1] 1 2 3 4
+
+$cat
+[1] 5 6 7 8 9
+
+> f["dad"] // accessing the vector from the list
+$dad
+[1] 1 2 3 4
+
+---->deleting the components from a list
+simply assign null to the components
+ex:-
+> f[["dad"]]<-NULL
+> f
+$cat
+[1] 5 6 7 8 9

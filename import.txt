@@ -1,0 +1,34 @@
+IMPORTING DATA SETS INTO R
+
+
+Importing text data into r
+anal.data <- read.table("C:/Users/Innova/Desktop/sai/factor.txt", header=T, sep="\t")
+> anal.data
+
+---->importing text file into R
+
+f<- read.table("C:/Users/Innova/Desktop/sai/lallu.txt", header=TRUE, sep=",",stringsAsFactors = FALSE)
+> f
+ name.idno.state.branch.age
+1 sailakshmi 13003243\tAP CSE 21
+2    srineha 13003230 AP CSE 21
+3     akhila 13003080 AP CSE 20
+4    sruthi 150040666 AP ECE 19
+
+
+------>importing csv file into R
+* save the file as .csv file 
+* as it is a csv file the seperator should be a comma 
+
+ f<- read.table("C:/Users/Innova/Desktop/sai/xl1.csv", header=TRUE, sep=",",stringsAsFactors = FALSE)
+> f
+name  number      id    age salary     job
+1     sai 1734830   73490     19  60000      se
+2 lakshmi   56780   63283     20  43739    sgfe
+3  sruthi  537839  634839     20 782389    hdhj
+4    neha 7390320 7782390     20  62389    dfuj
+5 akhila   737493    8740 873878 793847 gdyubvg
+
+------>importing excel file into R
+
+> read_excel("C:/Users/Innova/Downloads/KLU B.Tech CSE & ECE 2017.xls")

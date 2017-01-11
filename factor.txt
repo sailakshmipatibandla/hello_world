@@ -1,0 +1,59 @@
+FACTORS
+
+
+*Factor is a data structure used for fields that take only pre-defined and finite number of values.
+*for example, a data field such as maritial status, if you are married,single, divorced,seperated,widowed...It takes only categorical data
+*In such cases we know all the possible values beforehand. 
+*These distinct values are called levels...
+
+----->Creation of factor
+factor can be created using factor() function..
+
+ex1:- 
+> x<-factor(c("single","married","divorced","widowed"))
+> x
+[1] single   married  divorced widowed 
+Levels: divorced married single widowed
+
+ex2:-
+> x<-factor(c("single","married","single","married"))
+> x
+[1] single  married single  married
+Levels: married single
+
+Factors are closely related with vectors. 
+In fact, factors are stored as integer vectors. This is clearly seen from its structure.
+
+ex3:-
+> x<-factor(c("single","married","single","married"))
+> str(x)
+ Factor w/ 2 levels "married","single": 2 1 2 1
+
+*We see that levels are stored in a character vector and the individual elements are actually stored as indices.
+*Factors are also created when we read non-numerical columns into a data frame.
+*By default, data.frame() function converts character vector into factor. 
+*To suppress this behavior, we have to pass the argument stringsAsFactors = FALSE.
+
+---> Accessing the elements of the vector
+
+> x[3]
+[1] single
+Levels: married single
+
+> x[c(2,4)]
+[1] married married
+Levels: married single
+
+---> Modification of vector
+Components of a factor can be modified using simple assignments. 
+However, we cannot choose values outside of its predefined levels.
+
+> x[3]<- "married"
+> x
+[1] single  married married married
+Levels: married single
+
+> levels(x)<-c(levels(x),"widowed") // adding new level
+> x
+[1] single  married married married
+Levels: married single widowed

@@ -1,0 +1,165 @@
+---->VECTORS
+
+
+1) Vector is nothing but a list of items
+
+vectors are created using the c() function.
+vectors must have the elements of same type.
+
+ex1:- creation of simple vector with same type of elements..
+
+> v1 <- c(11,21,31,41,51)
+> v1
+[1] 11 21 31 41 51
+
+ex2:- vector with different type of elements....Coercion comes into the picture
+
+> v2<-c(11,"sai",31,"p",22,"hello")
+> v2
+[1] "11"    "sai"   "31"    "p"     "22"    "hello"
+ 
+(it converts all the items into character type and prints the output...)
+
+ex3:-> 
+x <- c(1, 5.4, TRUE, "hello")
+> x
+[1] "1"     "5.4"   "TRUE"  "hello"
+
+-->Here coercion takes place from lower to higher types
+
+ex4:- To create a vector of consecutive numbers,: operator is useful
+> x<-c(5:10)
+> x
+[1]  5  6  7  8  9 10
+
+ex5:- Complex sequences can be created using seq() operator,by defining the no. of points
+in the interval
+
+> seq(4,7,by=0.5)
+[1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0
+
+---> Accesing the elements of vector
+
+1) using numeric vector as index.......
+> x
+[1]  5  6  7  8  9 10
+> x[6]
+[1] 10
+> x[4]
+[1] 8
+
+> x[c(2,6)]     // to access multiple elements at a time
+[1]  6 10
+
+> x[-2]   // to access all elements excpet the second element
+[1]  5  7  8  9 10
+
+> x[c(2,-6)]     // cannot mix positive and negative indices
+Error in x[c(2, -6)] : only 0's may be mixed with negative subscripts
+
+> x[c(2.55,5.89)]   // real numbers are converted into integers
+[1] 6 9
+
+2) using logical vector as index....
+
+When we use a logical vector for indexing, the position where the logical vector is TRUE is returned.
+
+> x[c(TRUE, FALSE, FALSE, TRUE)]
+[1] 5 8 9
+
+If the given logical vector size is less than the actual vector, then it will start the same sequence again
+for ex:   sequence will be like T,F,F,T,T,F,F,T.....
+
+> x[x>0]  // based on condition
+[1]  5  6  7  8  9 10
+> x[x<0]
+integer(0)
+
+3) using character vector as index.....
+
+> x <- c("first"=5, "second"=8, "third"=11)
+> names(x)
+[1] "first"  "second" "third" 
+
+> x["third"]
+third 
+   11 
+
+------> modifying a vector
+
+> x<-c(12,13,15,19)
+> x
+[1] 12 13 15 19 
+
+> x[3]<-14  //modifying a vector
+> x
+[1] 12 13 14 19
+
+> x[x<15]<- 11  //modifying the elements of a vector which are less than 15
+> x
+[1] 11 11 11 19
+
+> x<-x[1:3]  // truncating the vector to first three element
+> x
+[1] 11 11 11
+
+--------> deleting a vector...
+
+We can delete a vector simply by assigning null value to it.
+
+> x<-NULL
+> x
+NULL 
+
+> x[2]
+NULL
+
+------> addition of two vectors..
+
+> x<-c(3,7,9)
+> x
+> y<- c(4,5,6)
+> y
+> x+y
+[1]  7 12 15
+
+> x+c(2,4)
+[1]  5 11 11
+Warning message:
+In x + c(2, 4) :
+  longer object length is not a multiple of shorter object length
+ 
+> x+5
+[1]  8 12 14
+
+> sum(x+y)
+[1] 34
+> sum(y)
+[1] 15
+
+ex:- suits<-c("spades", "clubs", "diamonds", "hearts")
+> remain<-c("11","12","13","14")
+> names(remain)<-suits
+> remain
+  spades    clubs diamonds   hearts 
+    "11"     "12"     "13"     "14" 
+> length(remain)
+[1] 4
+> length(suits)
+[1] 4
+   
+----->Vector element recycling
+If we apply arithmetic operations to two vectors of unequal length, then the elements of the shorter vector are recycled to complete the operations.
+
+>v1 <- c(3,8,4,5,0,11)
+>v2 <- c(3,5,7)
+# V2 becomes c(3,5,7,3,5,7)
+> v1+v2
+[1]  6 13 11  8  5 18
+
+----->vector element sorting
+> s<-sort(v1+v2)
+> s
+[1]  5  6  8 11 13 18
+
+

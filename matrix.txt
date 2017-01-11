@@ -1,0 +1,181 @@
+MATRICES
+
+Matrix is a two dimensional data structure in R programming.
+
+Matrix is similar to vectors but additionally contains the dimension attribute. All attributes of an object can be checked with the attributes() function
+dimension can be checked directly with the dim() function.
+ 
+Matrix can be created using matrix() function
+
+No need to provide both the dimensions of the matrix, if one is provided other is directly inferred from the length of the data
+
+ex1:-   
+
+> x<-matrix(1:16,nrow=4,ncol=4)
+> x
+     [,1] [,2] [,3] [,4]
+[1,]    1    5    9   13
+[2,]    2    6   10   14
+[3,]    3    7   11   15
+[4,]    4    8   12   16
+
+> x<-matrix(1:16,nrow=4,) // if one dimension is provided it is sufficient..both the outputs are same.
+> x
+     [,1] [,2] [,3] [,4]
+[1,]    1    5    9   13
+[2,]    2    6   10   14
+[3,]    3    7   11   15
+[4,]    4    8   12   16
+
+> x<-matrix(1:16,nrow=TRUE,ncol=8) // filling it row wise
+> x
+     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+[1,]    1    2    3    4    5    6    7    8
+
+> x<-matrix(1:16,nrow=8,ncol=TRUE) // filling it row wise
+> x
+     [,1]
+[1,]    1
+[2,]    2
+[3,]    3
+[4,]    4
+[5,]    5
+[6,]    6
+
+
+
+> x <- matrix(1:9, nrow = 3,ncol=3, dimnames = list(c("X","Y","Z"), c("A","B","C"))) //naming the dimensions..
+> x
+  A B C
+X 1 4 7
+Y 2 5 8
+Z 3 6 9
+
+These dimension names can be accessed or changed with two helpful functions colnames() and rownames().
+
+> colnames(x)
+[1] "A" "B" "C"
+> rownames(x)
+[1] "X" "Y" "Z"
+> # It is also possible to change names
+> colnames(x) <- c("C1","C2","C3")
+> rownames(x) <- c("R1","R2","R3")
+> x
+   A B C
+r1 1 4 7
+r2 2 5 8
+r3 3 6 9
+
+-->another way of creating matrices is using cbind() and rbind() functions..
+
+> r<-cbind(c(1,4,6) ,c(5,7,9)) // column wise
+> r
+     [,1] [,2]
+[1,]    1    5
+[2,]    4    7
+[3,]    6    9
+
+> r<-rbind(c(1,4,6) ,c(5,7,9))
+> r
+     [,1] [,2] [,3]
+[1,]    1    4    6
+[2,]    5    7    9
+
+--->Accessing the elemets of matrix....
+
+We can access elements of a matrix using the square bracket [ indexing method
+Elements can be accessed as var[row, column]. Here rows and columns are vectors.
+> x
+  A B C
+X 1 4 7
+Y 2 5 8
+Z 3 6 9
+> x[c(1,2),c(2,3)] // accessing elements
+  B C
+X 4 7
+Y 5 8
+
+> x[c(1,2),] //leaving columns field empty will select the entire rows
+  A B C
+X 1 4 7
+Y 2 5 8
+
+> x[c(-1),] // it will select all the other rows except the first row
+  A B C
+Y 2 5 8
+Z 3 6 9
+
+> e
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    2    6   10    5    9
+[2,]    5    9    2    6   10
+
+> e[c(TRUE,FALSE),c(FALSE,TRUE)]
+[1] 6 5
+
+---->accessing the matrix
+
+> x
+  A B C
+X 1 4 1
+Y 2 5 2
+Z 3 6 3
+> x[c(T,F),c(F,T)] // using logical vector as index
+X Z 
+4 6 
+transpose of a matrix:-
+> x
+  A B C
+X 1 4 1
+Y 2 5 2
+Z 3 6 3
+
+> t(x) //transpose
+  X Y Z
+A 1 2 3
+B 4 5 6
+C 1 2 3
+
+> c=matrix(+c(3,5,2),nrow=3,ncol=1)
+> c
+     [,1]
+[1,]    3
+[2,]    5
+[3,]    2
+> cbind(x,c) //combining two matrices
+  A B C  
+X 1 4 1 3
+Y 2 5 2 5
+Z 3 6 3 2
+
+> x[,"A"] // using character vector as index
+X Y Z 
+1 2 3 
+
+--->modifying a matrix..
+> x
+     [,1] [,2] [,3]
+[1,]    1    4    1
+[2,]    2    5    2
+[3,]    3    6    3
+
+> x[2,2]<-11 // modification
+> x
+     [,1] [,2] [,3]
+[1,]    1    4    1
+[2,]    2   11    2
+[3,]    3    6    3
+
+
+> x <- matrix(1:6, nrow = 3,ncol=3, dimnames = list(c("X","Y","Z"), c("A","B","C")))
+> x
+  A B C
+X 1 4 1
+Y 2 5 2
+Z 3 6 3
+> x[x<5] <- 2 // changing the elements less than 5 to 2
+> x
+  A B C
+X 2 2 2
+Y 2 5 2
+Z 2 6 2
