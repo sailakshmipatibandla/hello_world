@@ -1,0 +1,33 @@
+GGPLOT2
+
+The dataset called mpg available is used in the ggplot
+> library(ggplot2)
+> str(mpg)
+
+
+> qplot(cty,hwy,data=mpg)
+> qplot(cty,hwy,data=mpg,geom=c("point","smooth")) // adding a geom
+
+> qplot(hwy,data=mpg,color=drv) // histogram using qplot
+> qplot(cty,data=mpg,color=drv) 
+
+> qplot(cty,hwy,data=mpg,facets= .~drv) // facets used for subsetting the datasets
+
+> qplot(displ,data=mpg,facets= drv~.,binwidth=2) // histogram using facets
+
+> qplot(displ, hwy, data = mpg, alpha = I(1/10)) // using alpha
+
+> qplot(cty,hwy,data=mpg,geom=c("point","smooth"),method = "gam", formula = y ~ s(x)) // using method and formula for larger datasets
+
+> qplot(cty,hwy,data=mpg,geom=c("point","smooth"),method = "lm", formula = y ~ ns(x,5)) // linear model
+
+
+------->Boxplots and jittered points
+
+When a set of data includes a categorical variable and one or more continuous variables, you will probably be interested
+ to know how the values of the continuous variables vary with the levels of the categorical variable
+
+> qplot(displ,hwy, data = mpg, geom = "jitter", alpha = I(1 / 5))
+> qplot(displ,hwy, data = mpg, geom = "jitter")
+> qplot(displ,hwy, data = mpg, geom = "boxplot")
+
