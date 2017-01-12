@@ -1,0 +1,93 @@
+------>PLOTTING IN R
+
+-------->Using plot function
+
+> name<-c("sai","lakshmi","neha","akhila","sruthi","sri")
+> empid<-c(100,101,105,106,109,108)
+> phno<-c(67890123,57849403,7623782,6378292,5474849,6483922)
+> age<-c(19,20,21,22,22,21)
+> sal<-c(30000,31000,23444,63478,648393,70000)
+> df<-data.frame(name,empid,phno,age,sal)
+> df
+     name empid     phno age    sal
+1     sai   100 67890123  19  30000
+2 lakshmi   101 57849403  20  31000
+3    neha   105  7623782  21  23444
+4  akhila   106  6378292  22  63478
+5  sruthi   109  5474849  22 648393
+6     sri   108  6483922  21  70000
+
+>plot(df)
+> plot(df$age)
+> plot(df$empid)
+> plot(df$sal)
+> plot(df$name)
+> plot(df$phno)
+
+> plot(df, col="blue", ylim=c(0,12)) // to draw it with ranges on y axis
+> plot(df, col="red", ylim=c(0,12))
+> plot(df, col="red", xlim=c(0,12)) // to draw it with ranges on x axis
+> plot(df, col="red", xlim=c(0,12),ylim=c(0,12))
+
+> plot(df$age, type="o", col="blue") // to draw a graph with a line connecting to the points with blue color
+
+> plot(df$sal, type="o", col="green") 
+
+>lines(df, type="o", pch=22, lty=2, col="red") # Graph df with red dashed line and square points
+> lines(df$empid, type="o", pch=22, lty=2, col="red")
+> lines(df$sal, type="o", pch=22, lty=2, col="red")
+> lines(df$age, type="o", pch=22, lty=2, col="red")
+> lines(df$phno, type="o", pch=22, lty=2, col="red")
+
+> title(main="info", col.main="red", font.main=4) // to give title to the plot
+> title(xlab="emp", col.lab=rgb(0,0.5,0)) // to give label to the x axis
+> title(ylab="sal", col.lab=rgb(0,0.5,0)) // to label y axis
+
+-------> Barplots
+
+> barplot(df$sal)
+> box()
+> title(xlab="phno", col.lab=rgb(1.0,0,0))
+> title(ylab="phno", col.lab=rgb(0,0,0.7))
+
+> barplot(df$sal, main="info",names.arg=c("Mon","Tue","Wed","Thu","Fri","sat"), 
+border="orange", density=c(10,20,30,40,50)) //naming the bins and shading inside the bins...
+
+> barplot(as.matrix(df$sal),beside=TRUE, col=rainbow(5)) // to color each bin with rainbow colors
+> barplot(as.matrix(df$phno),beside=TRUE, col=rainbow(6))
+> barplot(as.matrix(df$age),beside=TRUE, col=rainbow(6))
+> legend("topleft", c("Mon","Tue","Wed","Thu","Fri","sat"), cex=0.6,  bty="n", fill=rainbow(6)); // to give details of the on the top left
+
+------>Histograms
+> hist(df$sal) // plots histogram
+> hist(df$age)
+> hist(df$sal,col="cyan",ylim=c(1,6)) plots the bins with colors
+
+> brk <- c(1,2,3,4)
+> hist(df$sal, col=heat.colors(length(brk)), // to give breaks at the given brk points
+ breaks=brk,right=F, main="Probability Density", las=1, cex.axis=0.8, freq=F)
+
+> r <- rlnorm(1000) // to get random normal distribution
+>hist(r)
+
+------->combining plots
+
+R makes it easy to combine multiple plots into one overall graph, using either the 
+par( ) or layout( ) function.
+
+> par(mfrow=c(2,2))
+> par(mfcol=c(2,2))
+> boxplot(df, main="Boxplot of wt")
+> boxplot(df$empid,df$phno,df$age, main="Boxplot of wt")
+
+
+> par(mfrow=c(3,1)) // to plot multiple plots in 3 rows and 1 column
+> plot(df$sal, main="Scatterplot of wt vs. mpg")
+> plot(df$age, main="Scatterplot of wt vs. mpg")
+> plot(df$phno, main="Scatterplot of wt vs. mpg")
+
+
+> layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE)) // using layout function
+> plot(df$age, main="Scatterplot of wt vs. mpg")
+> plot(df$phno, main="Scatterplot of wt vs. mpg")
+> plot(df$sal, main="Scatterplot of wt vs. mpg")
